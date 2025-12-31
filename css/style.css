@@ -400,7 +400,7 @@ body::after {
 }
 
 .hero-title {
-    font-size: 64px;
+    font-size: 72px;
     font-weight: 800;
     margin-bottom: var(--spacing-md);
     letter-spacing: -0.03em;
@@ -1348,7 +1348,7 @@ body::after {
     }
     
     .hero-title {
-        font-size: 36px;
+        font-size: 40px;
         line-height: 1.2;
     }
     
@@ -1502,7 +1502,7 @@ body::after {
     }
     
     .hero-title {
-        font-size: 28px;
+        font-size: 32px;
         line-height: 1.2;
     }
     
@@ -1580,7 +1580,7 @@ body::after {
     }
     
     .hero-title {
-        font-size: 24px;
+        font-size: 27px;
     }
     
     .section-title {
