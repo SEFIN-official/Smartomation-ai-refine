@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demos - Smartomation.ai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo">
+                    Smartomation<span class="logo-accent">.ai</span>
+                </a>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="products.html">Demo</a></li>
+                    <li><a href="clients.html">Clients</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <a href="products.html" class="nav-cta">Try Demos</a>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Products Header -->
+    <section class="section" style="padding-top: 120px;">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h1 class="section-title">Try our demo</h1>
+                <p class="section-subtitle">
+                    Each demo below represents a real, production-ready AI automation workflow built using n8n. 
+                    Click "Try Demo" to run the actual automation.
+                </p>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="product-grid" id="demos">
+                <!-- YouTube Summarizer -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <svg class="product-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="4" width="20" height="14" rx="2" stroke="white" stroke-width="2" fill="none"/>
+                            <path d="M8 4L12 8L16 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="12" cy="11" r="1.5" fill="white"/>
+                            <circle cx="8" cy="11" r="1.5" fill="white"/>
+                            <circle cx="16" cy="11" r="1.5" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">YouTube Summarizer</h3>
+                        <p class="product-description">
+                            Automatically summarizes YouTube videos using AI-powered workflow automation. 
+                            Extract key points, generate summaries, and get insights from video content.
+                        </p>
+                        <button class="btn btn-primary product-cta" data-demo="youtube-summarizer">
+                            Try Demo
+                        </button>
+                    </div>
+                    <!-- Demo Container -->
+                    <div class="demo-container" data-demo-id="youtube-summarizer">
+                        <form class="demo-form">
+                            <input 
+                                type="email"
+                                class="demo-input demo-input-email" 
+                                placeholder="Enter your email"
+                                autocomplete="email"
+                                required
+                            >
+                            <input 
+                                type="url" 
+                                class="demo-input demo-input-url" 
+                                placeholder="Enter YouTube URL..."
+                                required
+                            >
+                            <button type="submit" class="btn btn-primary demo-submit" style="width: 100%;">
+                                Run Automation
+                            </button>
+                        </form>
+                        <div class="demo-output"></div>
+                    </div>
+                </div>
+
+                <!-- Document Summarizer -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <svg class="product-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <path d="M14 2V8H20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="8" y1="12" x2="16" y2="12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="8" y1="16" x2="16" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="8" y1="20" x2="12" y2="20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Document Summarizer</h3>
+                        <p class="product-description">
+                            Automatically summarizes documents using AI-powered workflow automation. 
+                            Upload your document and get instant AI-generated summaries with key insights.
+                        </p>
+                        <button class="btn btn-primary product-cta" data-demo="document-summarizer">
+                            Try Demo
+                        </button>
+                    </div>
+                    <!-- Demo Container -->
+                    <div class="demo-container" data-demo-id="document-summarizer">
+                        <form class="demo-form">
+                            <input 
+                                type="text"
+                                class="demo-input demo-input-name" 
+                                placeholder="Enter your name"
+                                autocomplete="name"
+                                required
+                            >
+                            <input 
+                                type="email"
+                                class="demo-input demo-input-email" 
+                                placeholder="Enter your email"
+                                autocomplete="email"
+                                required
+                            >
+                            <input 
+                                type="file" 
+                                class="demo-input demo-input-file" 
+                                accept=".pdf,.doc,.docx,.txt"
+                                required
+                            >
+                            <button type="submit" class="btn btn-primary demo-submit" style="width: 100%;">
+                                Run Automation
+                            </button>
+                        </form>
+                        <div class="demo-output"></div>
+                    </div>
+                </div>
+
+                <!-- Local Service Finder -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <svg class="product-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="8" stroke="white" stroke-width="2" fill="none"/>
+                            <path d="M21 21L16.65 16.65" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Local Service Finder</h3>
+                        <p class="product-description">
+                            Find local services in your area using AI-powered workflow automation. 
+                            Enter your service type and city to discover nearby service providers.
+                        </p>
+                        <button class="btn btn-primary product-cta" data-demo="local-service-finder">
+                            Try Demo
+                        </button>
+                    </div>
+                    <!-- Demo Container -->
+                    <div class="demo-container" data-demo-id="local-service-finder">
+                        <form class="demo-form">
+                            <input 
+                                type="email"
+                                class="demo-input demo-input-email" 
+                                placeholder="Enter your email"
+                                autocomplete="email"
+                                required
+                            >
+                            <input 
+                                type="text"
+                                class="demo-input demo-input-service-type" 
+                                placeholder="Enter service type (e.g., plumber, electrician)"
+                                required
+                            >
+                            <input 
+                                type="text"
+                                class="demo-input demo-input-city" 
+                                placeholder="Enter city"
+                                required
+                            >
+                            <button type="submit" class="btn btn-primary demo-submit" style="width: 100%;">
+                                Run Automation
+                            </button>
+                        </form>
+                        <div class="demo-output"></div>
+                    </div>
+                </div>
+
+                <!-- YouTube Learning Report Generator -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <svg class="product-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 19.5C4 18.837 4.263 18.201 4.732 17.732C5.201 17.263 5.837 17 6.5 17H20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <path d="M6.5 2H20V22H6.5C5.837 22 5.201 21.737 4.732 21.268C4.263 20.799 4 20.163 4 19.5V4.5C4 3.837 4.263 3.201 4.732 2.732C5.201 2.263 5.837 2 6.5 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <line x1="9" y1="7" x2="17" y2="7" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="9" y1="11" x2="17" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">YouTube Learning Report Generator</h3>
+                        <p class="product-description">
+                            Generate comprehensive learning reports from YouTube content using AI-powered workflow automation. 
+                            Enter a topic and get detailed reports with key insights and summaries.
+                        </p>
+                        <button class="btn btn-primary product-cta" data-demo="youtube-learning-report">
+                            Try Demo
+                        </button>
+                    </div>
+                    <!-- Demo Container -->
+                    <div class="demo-container" data-demo-id="youtube-learning-report">
+                        <form class="demo-form">
+                            <input 
+                                type="text"
+                                class="demo-input demo-input-topic" 
+                                placeholder="Enter the topic to be searched"
+                                required
+                            >
+                            <input 
+                                type="email"
+                                class="demo-input demo-input-email" 
+                                placeholder="Enter your email"
+                                autocomplete="email"
+                                required
+                            >
+                            <button type="submit" class="btn btn-primary demo-submit" style="width: 100%;">
+                                Run Automation
+                            </button>
+                        </form>
+                        <div class="demo-output"></div>
+                    </div>
+                </div>
+
+                <!-- Multi-Model AI Summarizer -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <svg class="product-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="5" y="4" width="14" height="16" rx="2" stroke="white" stroke-width="2" fill="none"/>
+                            <circle cx="9" cy="10" r="1.5" fill="white"/>
+                            <circle cx="15" cy="10" r="1.5" fill="white"/>
+                            <path d="M9 14H15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M12 4V2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M8 6L7 5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M16 6L17 5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Multi-Model AI Summarizer</h3>
+                        <p class="product-description">
+                            Get AI-powered summaries using multiple AI models. Enter your prompt or content 
+                            and receive comprehensive summaries generated by advanced AI models.
+                        </p>
+                        <button class="btn btn-primary product-cta" data-demo="multi-model-ai-summarizer">
+                            Try Demo
+                        </button>
+                    </div>
+                    <!-- Demo Container -->
+                    <div class="demo-container" data-demo-id="multi-model-ai-summarizer">
+                        <form class="demo-form">
+                            <textarea 
+                                class="demo-input demo-input-chat" 
+                                placeholder="Enter your prompt or content to summarize..."
+                                rows="5"
+                                required
+                            ></textarea>
+                            <input 
+                                type="email"
+                                class="demo-input demo-input-email" 
+                                placeholder="Enter your email"
+                                autocomplete="email"
+                                required
+                            >
+                            <button type="submit" class="btn btn-primary demo-submit" style="width: 100%;">
+                                Run Automation
+                            </button>
+                        </form>
+                        <div class="demo-output"></div>
+                    </div>
+                </div>
+
+                <!-- Add more product cards here -->
+                <!-- Example template:
+                <div class="product-card fade-in">
+                    <div class="product-image">🎯</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Product Name</h3>
+                        <p class="product-description">
+                            Description of what this automation does.
+                        </p>
+                        <button class="btn btn-primary product-cta" data-demo="product-id">
+                            Try Demo
+                        </button>
+                    </div>
+                    <div class="demo-container" data-demo-id="product-id">
+                        <form class="demo-form">
+                            <input 
+                                type="text" 
+                                class="demo-input" 
+                                placeholder="Enter input..." 
+                                required
+                            >
+                            <button type="submit" class="btn btn-primary demo-submit" style="width: 100%;">
+                                Run Automation
+                            </button>
+                        </form>
+                        <div class="demo-output"></div>
+                    </div>
+                </div>
+                -->
+            </div>
+
+            <!-- Coming Soon Notice -->
+            <div class="trust-statement fade-in" style="margin-top: var(--spacing-xl);">
+                <p>
+                    More AI automation workflows coming soon.<br>
+                    <a href="about.html" style="color: var(--primary-blue);">Contact us</a> to discuss custom automation solutions.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    Smartomation<span class="logo-accent">.ai</span>
+                </div>
+                <p class="footer-tagline">Built with real AI automation workflows</p>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="products.html">Demo</a></li>
+                    <li><a href="clients.html">Clients</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="footer-bottom">
+                    &copy; <span id="currentYear"></span> Smartomation.ai. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/demo.js"></script>
+    <script>
+        // Set current year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+
