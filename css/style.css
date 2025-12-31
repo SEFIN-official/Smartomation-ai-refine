@@ -237,7 +237,9 @@ body::after {
     font-weight: 700;
     color: var(--text-primary);
     transition: all var(--transition-base);
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
     transform-style: preserve-3d;
     perspective: 1000px;
     text-shadow: 
@@ -247,12 +249,106 @@ body::after {
     letter-spacing: -0.5px;
 }
 
+.logo-text {
+    display: inline-block;
+}
+
+.logo-o-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 28px;
+    height: 28px;
+    margin: 0 1px;
+}
+
+.logo-o {
+    width: 100%;
+    height: 100%;
+    color: var(--text-primary);
+    animation: logo-pulse 3s ease-in-out infinite;
+}
+
+.logo-o-circle {
+    stroke: currentColor;
+    stroke-dasharray: 283;
+    stroke-dashoffset: 283;
+    animation: logo-draw 2s ease-in-out forwards;
+}
+
+.neuron-network {
+    transform-origin: 50% 50%;
+    animation: neuron-rotate 8s linear infinite;
+}
+
+.neuron-node {
+    filter: drop-shadow(0 0 2px currentColor);
+}
+
+.neuron-node.central {
+    filter: drop-shadow(0 0 4px currentColor);
+}
+
+.neuron-connection {
+    stroke-dasharray: 5, 5;
+    animation: connection-flow 3s linear infinite;
+}
+
+@keyframes logo-draw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes logo-pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.95;
+    }
+}
+
+@keyframes neuron-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes connection-flow {
+    0% {
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke-dashoffset: 20;
+    }
+}
+
 .logo:hover {
     transform: translateY(-2px) rotateX(5deg) scale(1.05);
     text-shadow: 
         0 4px 8px rgba(0, 0, 0, 0.15),
         0 6px 12px rgba(15, 118, 110, 0.25),
         0 2px 0 rgba(255, 255, 255, 0.6);
+}
+
+.logo:hover .logo-o {
+    animation: logo-pulse 1s ease-in-out infinite, logo-glow 2s ease-in-out infinite;
+}
+
+@keyframes logo-glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 3px currentColor);
+    }
+    50% {
+        filter: drop-shadow(0 0 8px currentColor);
+    }
 }
 
 .logo-accent {
@@ -1033,7 +1129,7 @@ body::after {
 }
 
 .company-logo {
-    padding: var(--spacing-md);
+    padding: var(--spacing-lg);
     background: var(--bg-glass);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -1042,9 +1138,9 @@ body::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px;
-    filter: grayscale(100%);
-    opacity: 0.7;
+    height: 140px;
+    filter: grayscale(0%);
+    opacity: 1;
     transition: all var(--transition-base);
     position: relative;
     box-shadow: var(--shadow-xs);
@@ -1061,7 +1157,7 @@ body::after {
 
 .company-logo img {
     max-width: 100%;
-    max-height: 70px;
+    max-height: 100px;
     width: auto;
     height: auto;
     object-fit: contain;
@@ -1099,21 +1195,141 @@ body::after {
 }
 
 .footer-content {
-    text-align: center;
     position: relative;
     z-index: 1;
+}
+
+.footer-main {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    gap: var(--spacing-3xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.footer-left {
+    max-width: 400px;
 }
 
 .footer-logo {
     font-size: 24px;
     font-weight: 700;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
     text-shadow: 
         0 2px 4px rgba(0, 0, 0, 0.2),
         0 4px 8px rgba(0, 0, 0, 0.15);
     letter-spacing: -0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    color: white;
 }
 
+.footer-logo .logo-text {
+    display: inline-block;
+}
+
+.footer-logo .logo-o-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 28px;
+    height: 28px;
+    margin: 0 1px;
+}
+
+.footer-logo .logo-o {
+    width: 100%;
+    height: 100%;
+    color: white;
+    animation: logo-pulse 3s ease-in-out infinite;
+}
+
+.footer-logo .logo-o-circle {
+    stroke: white;
+}
+
+.footer-logo .logo-accent {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.footer-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-lg);
+}
+
+.footer-social {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-base);
+    opacity: 0.9;
+}
+
+.social-icon:hover {
+    transform: translateY(-2px);
+    opacity: 1;
+}
+
+.social-icon img {
+    display: block;
+    transition: all var(--transition-base);
+    opacity: 0.9;
+}
+
+.social-icon:hover img {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.footer-right {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-column-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: var(--spacing-md);
+    letter-spacing: -0.3px;
+}
+
+.footer-column-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.footer-column-links a {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    transition: color var(--transition-base);
+    text-decoration: none;
+}
+
+.footer-column-links a:hover {
+    color: white;
+}
+
+/* Legacy footer styles for backward compatibility */
 .footer-tagline {
     color: rgba(255, 255, 255, 0.8);
     font-size: 14px;
@@ -1457,6 +1673,16 @@ body::after {
     }
     
     /* Footer */
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+    
+    .footer-right {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
+    }
+    
     .footer-links {
         flex-direction: column;
         gap: var(--spacing-sm);
