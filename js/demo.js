@@ -364,17 +364,8 @@ function displayResult(outputElement, data, isSuccess) {
         outputElement.classList.add('success');
         outputElement.classList.remove('error');
         
-        // Format the response nicely
-        if (typeof data === 'string') {
-            outputElement.textContent = data;
-        } else if (data.result || data.summary || data.output) {
-            // Handle common response formats
-            const result = data.result || data.summary || data.output;
-            outputElement.textContent = typeof result === 'string' ? result : JSON.stringify(result, null, 2);
-        } else {
-            // Pretty print JSON
-            outputElement.textContent = JSON.stringify(data, null, 2);
-        }
+        // Show custom message when workflow starts successfully
+        outputElement.textContent = 'Please check your email shortly';
     } else {
         outputElement.classList.add('error');
         outputElement.classList.remove('success');
