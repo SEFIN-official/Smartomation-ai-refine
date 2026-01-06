@@ -806,8 +806,8 @@ body::after {
 /* Product Cards */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: var(--spacing-lg);
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
     margin-top: var(--spacing-xl);
 }
 
@@ -820,9 +820,10 @@ body::after {
     overflow: hidden;
     transition: all var(--transition-base);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     box-shadow: var(--shadow-sm);
     transform: translateZ(0);
+    align-items: stretch;
 }
 
 .product-card:hover {
@@ -832,8 +833,10 @@ body::after {
 }
 
 .product-image {
-    width: 100%;
-    height: 200px;
+    width: 350px;
+    min-width: 350px;
+    height: auto;
+    min-height: 250px;
     background: linear-gradient(135deg, var(--green-deep-1), var(--green-deep-2));
     display: flex;
     align-items: center;
@@ -841,6 +844,7 @@ body::after {
     color: white;
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .product-icon {
@@ -873,10 +877,11 @@ body::after {
 }
 
 .product-content {
-    padding: var(--spacing-lg);
+    padding: var(--spacing-xl);
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    justify-content: space-between;
 }
 
 .product-title {
@@ -1463,10 +1468,18 @@ body::after {
         padding-top: 90px;
     }
     
-    .card-grid,
-    .product-grid {
+    .card-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: var(--spacing-md);
+    }
+    
+    .product-grid {
+        gap: var(--spacing-lg);
+    }
+    
+    .product-image {
+        width: 300px;
+        min-width: 300px;
     }
     
     .section {
@@ -1598,10 +1611,14 @@ body::after {
     }
     
     /* Cards and Grids */
-    .card-grid,
-    .product-grid {
+    .card-grid {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
+    }
+    
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
     }
     
     .card {
@@ -1610,6 +1627,18 @@ body::after {
     
     .product-card {
         width: 100%;
+        flex-direction: column;
+    }
+    
+    .product-image {
+        width: 100%;
+        min-width: 100%;
+        height: 200px;
+        min-height: 200px;
+    }
+    
+    .product-content {
+        padding: var(--spacing-lg);
     }
     
     .founder-section {
@@ -1775,8 +1804,15 @@ body::after {
         padding: var(--spacing-lg) 0;
     }
     
+    .product-card {
+        flex-direction: column;
+    }
+    
     .product-image {
-        height: 160px;
+        width: 100%;
+        min-width: 100%;
+        height: 180px;
+        min-height: 180px;
     }
     
     .product-icon {

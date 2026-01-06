@@ -365,7 +365,7 @@ function displayResult(outputElement, data, isSuccess) {
         outputElement.classList.remove('error');
         
         // Show custom message when workflow starts successfully
-        outputElement.textContent = 'Please check your email shortly';
+        outputElement.textContent = 'Check your inbox — something good is waiting 😉';
     } else {
         outputElement.classList.add('error');
         outputElement.classList.remove('success');
@@ -392,4 +392,3 @@ function addDemoConfig(demoId, config) {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { DEMO_CONFIG, addDemoConfig };
 }
-
