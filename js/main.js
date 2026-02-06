@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Staggered card animations
     initStaggeredAnimations();
+    
+    // Blog modal: Read more opens full content
+    initBlogModal();
 });
 
 // Set active navigation link
@@ -114,6 +117,56 @@ function initParallax() {
         const y = (clientY / height - 0.5) * 20;
         
         heroBackground.style.transform = `perspective(1000px) rotateX(${2 + y * 0.1}deg) rotateY(${x * 0.1}deg)`;
+    });
+}
+
+// Blog modal: open full post content in overlay
+function initBlogModal() {
+    const modal = document.getElementById('blogModal');
+    if (!modal) return;
+    
+    const backdrop = modal.querySelector('.blog-modal-backdrop');
+    const closeBtn = modal.querySelector('.blog-modal-close');
+    const imgEl = modal.querySelector('.blog-modal-image');
+    const dateEl = modal.querySelector('.blog-modal-date');
+    const titleEl = modal.querySelector('.blog-modal-title');
+    const bodyEl = modal.querySelector('.blog-modal-body');
+    
+    function openModal(card) {
+        const img = card.querySelector('.blog-image img');
+        const date = card.querySelector('.blog-date');
+        const title = card.querySelector('.product-title');
+        const fullContent = card.querySelector('.blog-full-content');
+        if (!img || !date || !title || !fullContent) return;
+        imgEl.src = img.src;
+        imgEl.alt = img.alt || title.textContent;
+        dateEl.textContent = date.textContent;
+        dateEl.setAttribute('datetime', date.getAttribute('datetime') || '');
+        titleEl.textContent = title.textContent;
+        bodyEl.innerHTML = fullContent.innerHTML;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+    
+    document.querySelectorAll('.blog-read-more').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const card = btn.closest('.blog-card');
+            if (card) openModal(card);
+        });
+    });
+    
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (backdrop) backdrop.addEventListener('click', closeModal);
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
     });
 }
 
