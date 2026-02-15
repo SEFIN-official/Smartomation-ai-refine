@@ -32,7 +32,26 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Blog modal: Read more opens full content
     initBlogModal();
+    
+    // Sticky CTA bar (show after scroll)
+    initStickyCTA();
 });
+
+// Sticky CTA bar - show after user scrolls past hero
+function initStickyCTA() {
+    const bar = document.querySelector('.sticky-cta-bar');
+    if (!bar) return;
+    
+    const showAfter = 400;
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > showAfter) {
+            bar.classList.add('visible');
+        } else {
+            bar.classList.remove('visible');
+        }
+    }, { passive: true });
+}
 
 // Set active navigation link
 function setActiveNavLink() {

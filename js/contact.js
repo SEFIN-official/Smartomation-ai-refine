@@ -8,12 +8,12 @@
    
    Add your n8n webhook URL here for contact form submissions.
    The webhook should receive: name, email, company, message
-   And forward the email to: ai@doorbox.ai
+   And forward the email to: contact@smartomation.ai
    ============================================ */
 const CONTACT_WEBHOOK_URL = 'https://aidoorbox.app.n8n.cloud/webhook/373b7523-8da3-4e4e-a8cc-70d82261d990'; // ⚠️ REQUIRED: Add your n8n webhook URL for contact form
 // Example: 'https://aidoorbox.app.n8n.cloud/webhook/contact-form'
 // Your n8n workflow should receive: name, email, company, message
-// And send email to: ai@doorbox.ai
+// And send email to: contact@smartomation.ai
 
 // Initialize contact form when page loads
 document.addEventListener('DOMContentLoaded', () => {
@@ -79,14 +79,14 @@ function handleContactSubmit(e) {
     })
     .then(data => {
         // Success
-        showMessage(messageDiv, 'Thank you for your message! We have received your inquiry and will get back to you soon at ' + formData.email + '.', true);
+        showMessage(messageDiv, 'Thank you! We\'ve received your message and will respond within 24 hours at ' + formData.email + '.', true);
         
         // Reset form
         form.reset();
     })
     .catch(error => {
         console.error('Contact form error:', error);
-        showMessage(messageDiv, 'Sorry, there was an error sending your message. Please try again or email us directly at ai@doorbox.ai', false);
+        showMessage(messageDiv, 'Sorry, there was an error sending your message. Please try again or email us directly at contact@smartomation.ai', false);
     })
     .finally(() => {
         // Re-enable form

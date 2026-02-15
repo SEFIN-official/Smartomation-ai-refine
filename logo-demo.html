@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smartomation.ai - Interactive Logo Demo</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #F9F8F6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        /* Logo container - enables cursor tracking area */
+        .logo-wrapper {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            padding: 1rem 2rem;
+        }
+
+        /* Inline SVG logo - production-ready */
+        .logo-svg {
+            display: block;
+            width: 220px;
+            height: auto;
+            overflow: visible;
+        }
+
+        /* Default: elegant dark tone */
+        .logo-svg .icon-fill {
+            fill: #1D1E1F;
+            transition: fill 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo-svg .text-fill {
+            fill: #1D1E1F;
+            transition: fill 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+            .logo-svg .accent-fill {
+                fill: #1D1E1F;
+                transition: fill 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .logo-svg line.accent-fill {
+                stroke: #1D1E1F;
+                fill: none;
+                transition: stroke 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+        /* Idle micro-animation - gentle pulse on icon */
+        @keyframes idle-float {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+            50% { transform: translate(0, -1px) scale(1.02); opacity: 0.95; }
+        }
+
+        .logo-svg .icon-group {
+            transform-origin: center;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo-wrapper:hover .logo-svg .icon-group {
+            animation: none;
+        }
+
+        /* Hover: vibrant gradient accent */
+        .logo-wrapper:hover .logo-svg .icon-fill,
+        .logo-wrapper:hover .logo-svg circle.accent-fill {
+            fill: url(#gradient-hover);
+        }
+
+        .logo-wrapper:hover .logo-svg line.accent-fill {
+            stroke: url(#gradient-hover);
+        }
+
+        .logo-wrapper:hover .logo-svg .accent-fill {
+            fill: url(#gradient-hover);
+        }
+
+        .logo-wrapper:hover .logo-svg .text-fill {
+            fill: #1D1E1F;
+        }
+
+        /* Cursor-follow glow (circle inside SVG) */
+        .logo-svg .glow-circle {
+            fill: url(#glow-gradient);
+            opacity: 0;
+            transform-origin: center;
+            transition: opacity 0.3s ease, transform 0.2s ease;
+            pointer-events: none;
+        }
+
+        .logo-wrapper:hover .logo-svg .glow-circle {
+            opacity: 0.15;
+            transform: scale(1.5);
+        }
+
+        /* Respect reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .logo-svg .icon-fill,
+            .logo-svg .text-fill,
+            .logo-svg .accent-fill,
+            .logo-svg line.accent-fill,
+            .logo-svg .icon-group,
+            .logo-svg .glow-circle {
+                transition: none;
+                animation: none;
+            }
+
+            .logo-wrapper:hover .logo-svg .glow-circle {
+                opacity: 0.08;
+                transform: none;
+            }
+        }
+
+        /* Debug: show interaction zone (remove in production) */
+        /* .logo-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            border: 1px dashed rgba(0,0,0,0.1);
+            border-radius: 8px;
+            pointer-events: none;
+        } */
+    </style>
+</head>
+<body>
+    <!-- Production-ready inline SVG logo -->
+    <a href="#" class="logo-wrapper" aria-label="Smartomation.ai - Home">
+        <svg
+            class="logo-svg"
+            viewBox="0 0 220 65"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-labelledby="logo-title"
+        >
+            <title id="logo-title">Smartomation.ai - Think Smart, Automate Wisely</title>
+
+            <!-- Gradients for hover state -->
+            <defs>
+                <linearGradient id="gradient-hover" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#6366F1" />
+                    <stop offset="100%" stop-color="#06B6D4" />
+                </linearGradient>
+                <radialGradient id="glow-gradient" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#6366F1" stop-opacity="0.6" />
+                    <stop offset="100%" stop-color="#06B6D4" stop-opacity="0" />
+                </radialGradient>
+            </defs>
+
+            <!-- Cursor-follow glow (positioned dynamically via JS) -->
+            <circle
+                class="glow-circle"
+                id="glowCircle"
+                cx="35"
+                cy="30"
+                r="25"
+            />
+
+            <!-- Icon group: interconnected nodes (AI/automation motif) -->
+            <g class="icon-group" id="iconGroup">
+                <!-- Central orb -->
+                <circle class="icon-fill" cx="35" cy="30" r="14" />
+                <!-- Orbital nodes -->
+                <circle class="accent-fill" cx="35" cy="12" r="4" />
+                <circle class="accent-fill" cx="48" cy="20" r="3" />
+                <circle class="accent-fill" cx="48" cy="40" r="3" />
+                <circle class="accent-fill" cx="35" cy="48" r="3" />
+                <circle class="accent-fill" cx="22" cy="40" r="3" />
+                <circle class="accent-fill" cx="22" cy="20" r="3" />
+                <!-- Connection lines (use stroke, inherit from accent) -->
+                <line class="accent-fill" x1="35" y1="30" x2="35" y2="12" stroke-width="1.5" fill="none" stroke-linecap="round" />
+                <line class="accent-fill" x1="35" y1="30" x2="48" y2="20" stroke-width="1.5" fill="none" stroke-linecap="round" />
+                <line class="accent-fill" x1="35" y1="30" x2="48" y2="40" stroke-width="1.5" fill="none" stroke-linecap="round" />
+                <line class="accent-fill" x1="35" y1="30" x2="35" y2="48" stroke-width="1.5" fill="none" stroke-linecap="round" />
+                <line class="accent-fill" x1="35" y1="30" x2="22" y2="40" stroke-width="1.5" fill="none" stroke-linecap="round" />
+                <line class="accent-fill" x1="35" y1="30" x2="22" y2="20" stroke-width="1.5" fill="none" stroke-linecap="round" />
+            </g>
+
+            <!-- Text: Smartomation.ai -->
+            <text class="text-fill" x="65" y="38" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="700" letter-spacing="-0.02em">Smartomation<tspan class="accent-fill">.ai</tspan></text>
+            <!-- Tagline -->
+            <text class="text-fill" x="65" y="55" font-family="Inter, system-ui, sans-serif" font-size="7" font-weight="500" letter-spacing="0.15em" opacity="0.7">THINK SMART, AUTOMATE WISELY</text>
+        </svg>
+    </a>
+
+    <script>
+        (function () {
+            'use strict';
+
+            // Respect prefers-reduced-motion - skip all JS-driven motion
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (prefersReducedMotion) return;
+
+            const wrapper = document.querySelector('.logo-wrapper');
+            const iconGroup = document.getElementById('iconGroup');
+            const glowCircle = document.getElementById('glowCircle');
+            const svg = document.querySelector('.logo-svg');
+
+            if (!wrapper || !iconGroup || !glowCircle || !svg) return;
+
+            // Get SVG viewBox for coordinate mapping
+            const viewBox = svg.getAttribute('viewBox').split(/\s+/).map(Number);
+            const vbWidth = viewBox[2];
+            const vbHeight = viewBox[3];
+
+            // Magnetic/parallax state - use GPU-friendly transform
+            let targetX = 0, targetY = 0;
+            let targetGlowX = 35, targetGlowY = 30;
+            let currentX = 0, currentY = 0;
+            let glowX = 35, glowY = 30;
+
+            const lerp = (a, b, t) => a + (b - a) * t;
+            const MAGNETIC_STRENGTH = 0.08;
+            const GLOW_FOLLOW_SPEED = 0.12;
+
+            let rafId = null;
+            function animate() {
+                currentX = lerp(currentX, targetX, MAGNETIC_STRENGTH);
+                currentY = lerp(currentY, targetY, MAGNETIC_STRENGTH);
+                glowX = lerp(glowX, targetGlowX, GLOW_FOLLOW_SPEED);
+                glowY = lerp(glowY, targetGlowY, GLOW_FOLLOW_SPEED);
+
+                iconGroup.style.transform = `translate(${currentX}px, ${currentY}px)`;
+                glowCircle.setAttribute('cx', glowX);
+                glowCircle.setAttribute('cy', glowY);
+
+                const stillMoving = Math.abs(currentX - targetX) > 0.01 || Math.abs(currentY - targetY) > 0.01 ||
+                    Math.abs(glowX - targetGlowX) > 0.5 || Math.abs(glowY - targetGlowY) > 0.5;
+                if (stillMoving) rafId = requestAnimationFrame(animate);
+            }
+
+            // Map mouse position to SVG coordinate space
+            function getSvgCoords(e) {
+                const rect = svg.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * vbWidth;
+                const y = ((e.clientY - rect.top) / rect.height) * vbHeight;
+                return { x, y };
+            }
+
+            function onMouseMove(e) {
+                const { x, y } = getSvgCoords(e);
+                const centerX = vbWidth * 0.2; // icon is around 35/200
+                const centerY = vbHeight / 2;
+
+                // Magnetic offset: cursor pulls icon slightly toward it
+                const dx = (x - centerX) * 0.15;
+                const dy = (y - centerY) * 0.15;
+
+                targetX = dx;
+                targetY = dy;
+                targetGlowX = x;
+                targetGlowY = y;
+
+                if (!rafId) rafId = requestAnimationFrame(animate);
+            }
+
+            function onMouseLeave() {
+                targetX = 0;
+                targetY = 0;
+                targetGlowX = 35;
+                targetGlowY = 30;
+                if (!rafId) rafId = requestAnimationFrame(animate);
+            }
+
+            // Idle animation when not hovered
+            let idleRafId = null;
+            let idlePhase = 0;
+
+            function idleAnimation() {
+                if (wrapper.matches(':hover')) {
+                    idlePhase = 0;
+                    idleRafId = requestAnimationFrame(idleAnimation);
+                    return;
+                }
+                idlePhase += 0.02;
+                const y = Math.sin(idlePhase) * 0.5;
+                iconGroup.style.transform = `translate(0, ${y}px)`;
+                idleRafId = requestAnimationFrame(idleAnimation);
+            }
+
+            wrapper.addEventListener('mousemove', onMouseMove, { passive: true });
+            wrapper.addEventListener('mouseleave', onMouseLeave, { passive: true });
+            idleAnimation();
+        })();
+    </script>
+</body>
+</html>
