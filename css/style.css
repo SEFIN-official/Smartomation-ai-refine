@@ -12,6 +12,20 @@
     box-sizing: border-box;
 }
 
+html, body {
+    min-height: 100%;
+}
+
+#vanta-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
 :root {
     /* Light theme - Anthropic Economic Futures style */
     --bg-dark: #F9F8F6;
