@@ -175,9 +175,17 @@ function initBlogModal() {
     }
     
     document.querySelectorAll('.blog-read-more').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
             const card = btn.closest('.blog-card');
             if (card) openModal(card);
+        });
+    });
+    
+    document.querySelectorAll('.blog-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('.blog-read-more')) return;
+            openModal(card);
         });
     });
     

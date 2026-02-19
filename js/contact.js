@@ -1,18 +1,17 @@
 /* ============================================
    SMARTONATION.AI - CONTACT FORM JS
-   Handles contact form submission to n8n webhook
+   Handles contact form submission to workflow webhook
    ============================================ */
 
 /* ============================================
    CONTACT FORM CONFIGURATION
    
-   Add your n8n webhook URL here for contact form submissions.
+   Add your webhook URL here for contact form submissions.
    The webhook should receive: name, email, company, message
    And forward the email to: contact@smartomation.ai
    ============================================ */
-const CONTACT_WEBHOOK_URL = 'https://aidoorbox.app.n8n.cloud/webhook/373b7523-8da3-4e4e-a8cc-70d82261d990'; // ⚠️ REQUIRED: Add your n8n webhook URL for contact form
-// Example: 'https://aidoorbox.app.n8n.cloud/webhook/contact-form'
-// Your n8n workflow should receive: name, email, company, message
+const CONTACT_WEBHOOK_URL = 'https://aidoorbox.app.n8n.cloud/webhook/373b7523-8da3-4e4e-a8cc-70d82261d990'; // ⚠️ REQUIRED: Add your webhook URL for contact form
+// Your workflow should receive: name, email, company, message
 // And send email to: contact@smartomation.ai
 
 // Initialize contact form when page loads
@@ -63,7 +62,7 @@ function handleContactSubmit(e) {
     messageDiv.className = '';
     messageDiv.textContent = '';
     
-    // Send to n8n webhook
+    // Send to workflow webhook
     fetch(CONTACT_WEBHOOK_URL, {
         method: 'POST',
         headers: {

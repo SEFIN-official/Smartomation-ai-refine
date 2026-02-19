@@ -1,6 +1,6 @@
 /* ============================================
    SMARTONATION.AI - DEMO JS
-   Handles n8n webhook integration and demo UI
+   Handles webhook integration and demo UI for AI automation demos
    ============================================ */
 
 /* ============================================
@@ -8,25 +8,23 @@
    
    To add a new demo:
    1. Add a product card in products.html with data-demo="your-demo-id"
-   2. Add configuration here with your n8n webhook URL
-   3. Ensure your n8n workflow accepts POST requests with JSON payload
+   2. Add configuration here with your workflow webhook URL
+   3. Ensure your workflow accepts POST requests with JSON payload
    
-   Webhook URL format: https://your-n8n-instance.com/webhook/your-workflow-id
+   Webhook URL format: https://your-workflow-endpoint.com/webhook/your-workflow-id
    ============================================ */
 const DEMO_CONFIG = {
     'youtube-summarizer': {
-        webhookUrl: 'https://aidoorbox.app.n8n.cloud/webhook/6f87007a-75fd-42c8-8afb-3da835c11836', // Your n8n webhook URL
-        // Example: 'https://your-n8n-instance.com/webhook/youtube-summarizer'
-        // Payload fields expected by n8n:
+        webhookUrl: 'https://aidoorbox.app.n8n.cloud/webhook/6f87007a-75fd-42c8-8afb-3da835c11836', // Your workflow webhook URL
+        // Payload fields expected by workflow:
         //   email: user's email
         //   youtube_url: YouTube URL
         inputField: 'youtube_url',
         emailField: 'email'
     },
     'document-summarizer': {
-        webhookUrl: 'https://aidoorbox.app.n8n.cloud/webhook/doc-summarizer', // ⚠️ REQUIRED: Add your n8n webhook URL for document summarizer
-        // Example: 'https://aidoorbox.app.n8n.cloud/webhook/your-workflow-id'
-        // Payload fields expected by n8n (sent as FormData):
+        webhookUrl: 'https://aidoorbox.app.n8n.cloud/webhook/doc-summarizer', // ⚠️ REQUIRED: Add your webhook URL for document summarizer
+        // Payload fields expected (sent as FormData):
         //   name: user's name
         //   email: user's email
         //   document: file to be summarized (multipart/form-data)
@@ -36,9 +34,8 @@ const DEMO_CONFIG = {
         hasFileUpload: true // Flag to indicate file upload handling
     },
     'local-service-finder': {
-        webhookUrl: 'https://aidoorbox.app.n8n.cloud/webhook/local-service-finder', // ⚠️ REQUIRED: Add your n8n webhook URL for local service finder
-        // Example: 'https://aidoorbox.app.n8n.cloud/webhook/your-workflow-id'
-        // Payload fields expected by n8n:
+        webhookUrl: 'https://aidoorbox.app.n8n.cloud/webhook/local-service-finder', // ⚠️ REQUIRED: Add your webhook URL for local service finder
+        // Payload fields expected:
         //   email: user's email
         //   service_type: type of service requested
         //   city: city location
@@ -47,18 +44,16 @@ const DEMO_CONFIG = {
         cityField: 'city'
     },
     'youtube-learning-report': {
-        webhookUrl: 'https://aidoorbox.app.n8n.cloud/webhook/topic', // ⚠️ REQUIRED: Add your n8n webhook URL for YouTube learning report generator
-        // Example: 'https://aidoorbox.app.n8n.cloud/webhook/your-workflow-id'
-        // Payload fields expected by n8n:
+        webhookUrl: 'https://aidoorbox.app.n8n.cloud/webhook/topic', // ⚠️ REQUIRED: Add your webhook URL for YouTube learning report
+        // Payload fields expected:
         //   topic: topic to be searched
         //   email: user's email
         topicField: 'topic',
         emailField: 'email'
     },
     'multi-model-ai-summarizer': {
-        webhookUrl: 'https://aidoorbox.app.n8n.cloud/webhook/80e2adbb-c596-4e04-9ca6-61016c928ea7', // ⚠️ REQUIRED: Add your n8n webhook URL for multi-model AI summarizer
-        // Example: 'https://aidoorbox.app.n8n.cloud/webhook/your-workflow-id'
-        // Payload fields expected by n8n:
+        webhookUrl: 'https://aidoorbox.app.n8n.cloud/webhook/80e2adbb-c596-4e04-9ca6-61016c928ea7', // ⚠️ REQUIRED: Add your webhook URL for multi-model AI summarizer
+        // Payload fields expected:
         //   chat: user's prompt or content to summarize
         //   email: user's email
         chatField: 'chat',
@@ -67,7 +62,7 @@ const DEMO_CONFIG = {
     // Add more demos here as you create them
     // Example:
     // 'email-analyzer': {
-    //     webhookUrl: 'https://your-n8n-instance.com/webhook/email-analyzer',
+    //     webhookUrl: 'https://your-workflow-endpoint.com/webhook/email-analyzer',
     //     inputField: 'email',
     //     inputPlaceholder: 'Enter email content...',
     //     inputType: 'text'
@@ -128,7 +123,7 @@ function runDemo(demoId, form) {
     }
     
     if (!config.webhookUrl) {
-        showError('Webhook URL not configured. Please add your n8n webhook URL in js/demo.js');
+        showError('Webhook URL not configured. Please add your webhook URL in js/demo.js');
         return;
     }
     
@@ -184,7 +179,7 @@ function runDemo(demoId, form) {
         output.classList.remove('active', 'success', 'error');
         output.textContent = '';
         
-        // Call n8n webhook with FormData (no Content-Type header - browser sets it with boundary)
+        // Call workflow webhook with FormData (no Content-Type header - browser sets it with boundary)
         fetch(config.webhookUrl, {
             method: 'POST',
             body: formData
@@ -324,7 +319,7 @@ function runDemo(demoId, form) {
     output.classList.remove('active', 'success', 'error');
     output.textContent = '';
     
-    // Call n8n webhook with constructed payload
+    // Call workflow webhook with constructed payload
     fetch(config.webhookUrl, {
         method: 'POST',
         headers: {

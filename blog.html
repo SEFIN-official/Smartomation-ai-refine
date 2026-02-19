@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Smartomation.ai</title>
+    <title>Insights on AI Automation &amp; Intelligent Workflows | Smartomation.ai Blog</title>
+    <meta name="description" content="Thought leadership on scalable AI systems, workflow automation, and multi-agent orchestration. Enterprise-grade insights from Smartomation.ai.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -21,7 +22,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="products.html">Demo</a></li>
-                    <li><a href="clients.html">Experience</a></li>
+                    <li><a href="clients.html">Client</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="blog.html" class="active">Blog</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -37,36 +38,37 @@
     </nav>
 
     <!-- Blog Hero -->
-    <section class="section" style="padding-top: 120px;">
+    <section class="section blog-listing-hero">
         <div class="container">
             <div class="section-header fade-in">
-                <h1 class="section-title">AI Insights from Smartomation</h1>
+                <h1 class="section-title">Insights on AI Automation &amp; Intelligent Workflows</h1>
                 <p class="section-subtitle">
-                    Latest insights, trends, and guides on AI automation, n8n workflows, Google AI Studio, and LLM optimization
+                    Thought leadership on scalable AI systems, workflow automation, and multi-agent orchestration.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Blog Posts -->
+    <!-- Blog Cards Grid -->
     <section class="section">
         <div class="container">
-            <div class="blog-grid">
+            <div class="blog-listing-grid" id="blog-listing-cards">
                 <!-- New posts first (latest date) -->
                 <!-- 8. When the Workflow Wakes Up - Feb 5, 2026 -->
-                <article class="blog-card fade-in" data-blog-id="8">
+                <article class="blog-card fade-in" data-blog-id="8" data-author="Smartomation Team">
                     <div class="blog-image">
                         <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=250&fit=crop" alt="Workflow activation">
                     </div>
                     <div class="blog-content">
-                        <time class="blog-date" datetime="2026-02-05">February 5, 2026</time>
                         <h3 class="product-title">When the Workflow Wakes Up</h3>
+                        <p class="blog-byline">Smartomation Team – February 5, 2026</p>
+                        <time class="blog-date" datetime="2026-02-05" hidden>February 5, 2026</time>
                         <p class="blog-excerpt product-description">
                             Event-driven automation means workflows don’t run on a schedule—they wake up when something happens. A new lead, a support ticket, a threshold crossed. Designing for events makes your automation faster and more relevant.
                         </p>
                         <div class="blog-full-content" hidden>
                             <p>Event-driven automation means workflows don’t run on a schedule—they wake up when something happens. A new lead, a support ticket, a threshold crossed. Designing for events makes your automation faster and more relevant.</p>
-                            <p>We use n8n webhooks, triggers, and integrations so that the right workflow runs at the right moment. No polling, no “run every 15 minutes”—just instant reaction to real-world changes.</p>
+                            <p>We use event-driven webhooks, triggers, and integrations so that the right workflow runs at the right moment. No polling, no “run every 15 minutes”—just instant reaction to real-world changes.</p>
                             <p>This post explains how to move from cron-style automation to event-driven workflows and why it matters for scale and UX.</p>
                         </div>
                         <button type="button" class="btn btn-secondary blog-read-more">Read more</button>
@@ -79,14 +81,15 @@
                         <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=250&fit=crop" alt="Layers and infrastructure">
                     </div>
                     <div class="blog-content">
-                        <time class="blog-date" datetime="2026-02-03">February 3, 2026</time>
                         <h3 class="product-title">The Invisible Layer</h3>
+                        <p class="blog-byline">Smartomation Team – February 3, 2026</p>
+                        <time class="blog-date" datetime="2026-02-03" hidden>February 3, 2026</time>
                         <p class="blog-excerpt product-description">
                             The best automation is the kind users never see. The invisible layer sits between your apps and your people—routing, enriching, and validating data so that every system stays in sync and every process stays consistent.
                         </p>
                         <div class="blog-full-content" hidden>
                             <p>The best automation is the kind users never see. The invisible layer sits between your apps and your people—routing, enriching, and validating data so that every system stays in sync and every process stays consistent.</p>
-                            <p>No extra clicks, no new dashboards. Just reliable data flow and business rules applied where they belong. We implement this layer with n8n and Google AI Studio so your stack works as one system, not a patchwork of tools.</p>
+                            <p>No extra clicks, no new dashboards. Just reliable data flow and business rules applied where they belong. We implement this layer so your stack works as one system, not a patchwork of tools.</p>
                             <p>This post walks through how to design and run an invisible layer that scales with your organization.</p>
                         </div>
                         <button type="button" class="btn btn-secondary blog-read-more">Read more</button>
@@ -99,8 +102,9 @@
                         <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=250&fit=crop" alt="Autonomous agents">
                     </div>
                     <div class="blog-content">
-                        <time class="blog-date" datetime="2026-02-01">February 1, 2026</time>
                         <h3 class="product-title">Agents Without Leashes</h3>
+                        <p class="blog-byline">Smartomation Team – February 1, 2026</p>
+                        <time class="blog-date" datetime="2026-02-01" hidden>February 1, 2026</time>
                         <p class="blog-excerpt product-description">
                             Autonomous agents that can plan, use tools, and loop until the job is done are no longer science fiction. The challenge is design: clear goals, safe tool use, and guardrails so “agentic” doesn’t mean “unpredictable.”
                         </p>
@@ -119,8 +123,9 @@
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop" alt="Workflows and automation">
                     </div>
                     <div class="blog-content">
-                        <time class="blog-date" datetime="2026-01-28">January 28, 2026</time>
                         <h3 class="product-title">Antigravity Workflows</h3>
+                        <p class="blog-byline">Smartomation Team – January 28, 2026</p>
+                        <time class="blog-date" datetime="2026-01-28" hidden>January 28, 2026</time>
                         <p class="blog-excerpt product-description">
                             When automation removes friction, work feels lighter. Antigravity workflows are the ones that run in the background—data syncing, approvals routing, reports generating—so your team can focus on high-impact work.
                         </p>
@@ -139,14 +144,15 @@
                         <img src="https://images.unsplash.com/photo-1611606063065-ee7426b221da?w=400&h=250&fit=crop" alt="Chat to workflow">
                     </div>
                     <div class="blog-content">
-                        <time class="blog-date" datetime="2026-01-24">January 24, 2026</time>
                         <h3 class="product-title">From Chat to Chain</h3>
+                        <p class="blog-byline">Smartomation Team – January 24, 2026</p>
+                        <time class="blog-date" datetime="2026-01-24" hidden>January 24, 2026</time>
                         <p class="blog-excerpt product-description">
                             A single message can now trigger a full workflow. “From chat to chain” means turning natural-language requests into multi-step automations—orders, support tickets, reports—so users get things done without leaving the conversation.
                         </p>
                         <div class="blog-full-content" hidden>
                             <p>A single message can now trigger a full workflow. “From chat to chain” means turning natural-language requests into multi-step automations—orders, support tickets, reports—so users get things done without leaving the conversation.</p>
-                            <p>We implement this by connecting chat interfaces (Slack, Teams, custom bots) to n8n and LLMs: the message is parsed, the right workflow is selected, and the chain runs. Results come back in thread or via notification.</p>
+                            <p>We implement this by connecting chat interfaces (Slack, Teams, custom bots) to our workflow engine and LLMs: the message is parsed, the right workflow is selected, and the chain runs. Results come back in thread or via notification.</p>
                             <p>We walk through the architecture and security considerations for taking requests from chat all the way to execution.</p>
                         </div>
                         <button type="button" class="btn btn-secondary blog-read-more">Read more</button>
@@ -159,14 +165,15 @@
                         <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=250&fit=crop" alt="AI and thinking">
                     </div>
                     <div class="blog-content">
-                        <time class="blog-date" datetime="2026-01-19">January 19, 2026</time>
                         <h3 class="product-title">Automation That Thinks</h3>
+                        <p class="blog-byline">Smartomation Team – January 19, 2026</p>
+                        <time class="blog-date" datetime="2026-01-19" hidden>January 19, 2026</time>
                         <p class="blog-excerpt product-description">
                             Automation used to mean “repeat the same steps.” Today it can mean “understand, decide, and act.” LLMs bring reasoning into the loop—classifying, summarizing, suggesting next steps—so workflows can handle nuance and ambiguity.
                         </p>
                         <div class="blog-full-content" hidden>
                             <p>Automation used to mean “repeat the same steps.” Today it can mean “understand, decide, and act.” LLMs bring reasoning into the loop—classifying, summarizing, suggesting next steps—so workflows can handle nuance and ambiguity.</p>
-                            <p>We combine n8n with Google AI Studio and other LLMs to build automations that read emails, interpret requests, and route or respond appropriately. The outcome: automation that feels intelligent, not mechanical.</p>
+                            <p>We combine intelligent workflow orchestration with LLMs to build automations that read emails, interpret requests, and route or respond appropriately. The outcome: automation that feels intelligent, not mechanical.</p>
                             <p>We’ll show practical patterns for “automation that thinks” and how to keep costs and latency under control.</p>
                         </div>
                         <button type="button" class="btn btn-secondary blog-read-more">Read more</button>
@@ -179,15 +186,16 @@
                         <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop" alt="AI Agents">
                     </div>
                     <div class="blog-content">
-                        <time class="blog-date" datetime="2026-01-12">January 12, 2026</time>
                         <h3 class="product-title">Agents, Not Scripts</h3>
+                        <p class="blog-byline">Smartomation Team – January 12, 2026</p>
+                        <time class="blog-date" datetime="2026-01-12" hidden>January 12, 2026</time>
                         <p class="blog-excerpt product-description">
                             The shift from rigid, step-by-step scripts to adaptive AI agents is redefining automation. Agents reason, choose tools, and recover from failures—so your workflows behave more like a colleague than a macro.
                         </p>
                         <div class="blog-full-content" hidden>
                             <p>The shift from rigid, step-by-step scripts to adaptive AI agents is redefining automation. Agents reason, choose tools, and recover from failures—so your workflows behave more like a colleague than a macro.</p>
                             <p>Scripts do exactly what you tell them. Agents interpret intent, decide which step to take next, and adapt when data or context changes. That means fewer brittle “if this then that” chains and more systems that can handle edge cases and new scenarios without constant rewrites.</p>
-                            <p>At Smartomation.ai we build agentic workflows with n8n and LLMs so your automations think, not just execute. The result: higher reliability, less maintenance, and automation that scales with your business.</p>
+                            <p>At Smartomation.ai we build agentic workflows with multi-agent AI systems so your automations think, not just execute. The result: higher reliability, less maintenance, and automation that scales with your business.</p>
                         </div>
                         <button type="button" class="btn btn-secondary blog-read-more">Read more</button>
                     </div>
@@ -199,8 +207,9 @@
                         <img src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=400&h=250&fit=crop" alt="Manual to digital">
                     </div>
                     <div class="blog-content">
-                        <time class="blog-date" datetime="2026-01-08">January 8, 2026</time>
                         <h3 class="product-title">The Last Manual Task</h3>
+                        <p class="blog-byline">Smartomation Team – January 8, 2026</p>
+                        <time class="blog-date" datetime="2026-01-08" hidden>January 8, 2026</time>
                         <p class="blog-excerpt product-description">
                             Every team has that one task that never got automated—the spreadsheet update, the status check, the weekly report. Identifying and eliminating “the last manual task” often delivers the highest ROI and the biggest sigh of relief.
                         </p>
@@ -220,8 +229,9 @@
                         <img src="images/choosing-right-llm-use-case-image.png" alt="Choosing the Right LLM for Your Use Case">
                     </div>
                     <div class="blog-content">
-                        <time class="blog-date" datetime="2025-12-20">December 20, 2025</time>
                         <h3 class="product-title">Choosing the Right LLM for Your Use Case</h3>
+                        <p class="blog-byline">Smartomation Team – December 20, 2025</p>
+                        <time class="blog-date" datetime="2025-12-20" hidden>December 20, 2025</time>
                         <p class="blog-excerpt product-description">
                             A comprehensive guide to selecting optimal LLMs (GPT-4, Llama, Claude, Gemini) for different business scenarios. Benchmark comparisons and cost-effectiveness analysis.
                         </p>
@@ -240,8 +250,9 @@
                         <img src="images/future-ai-cost-monitoring-image.png" alt="The Future of AI Cost Monitoring">
                     </div>
                     <div class="blog-content">
-                        <time class="blog-date" datetime="2025-12-14">December 14, 2025</time>
                         <h3 class="product-title">The Future of AI Cost Monitoring</h3>
+                        <p class="blog-byline">Smartomation Team – December 14, 2025</p>
+                        <time class="blog-date" datetime="2025-12-14" hidden>December 14, 2025</time>
                         <p class="blog-excerpt product-description">
                             Performance tuning guide for AI automation workflows. Learn how to calculate execution speed, index data effectively, and optimize workflows to achieve 20-50% cost savings while maintaining performance.
                         </p>
@@ -260,8 +271,9 @@
                         <img src="images/performance-tuning-ai-workflows-image.png" alt="Performance Tuning for AI Workflows">
                     </div>
                     <div class="blog-content">
-                        <time class="blog-date" datetime="2025-12-08">December 8, 2025</time>
                         <h3 class="product-title">Performance Tuning for AI Workflows</h3>
+                        <p class="blog-byline">Smartomation Team – December 8, 2025</p>
+                        <time class="blog-date" datetime="2025-12-08" hidden>December 8, 2025</time>
                         <p class="blog-excerpt product-description">
                             Learn how to index data, calculate execution speeds, and optimize AI automation workflows. Real-world examples of achieving 2x faster execution times through strategic optimization.
                         </p>
@@ -274,20 +286,21 @@
                     </div>
                 </article>
 
-                <!-- Optimizing LLMs with Google AI Studio - Dec 2, 2025 -->
+                <!-- Optimizing LLMs: Cost-Saving Strategies - Dec 2, 2025 -->
                 <article class="blog-card fade-in" data-blog-id="o2">
                     <div class="blog-image">
-                        <img src="images/optimizing-llms-google-ai-studio-image.webp" alt="Optimizing LLMs with Google AI Studio">
+                        <img src="images/optimizing-llms-google-ai-studio-image.webp" alt="Optimizing LLMs for cost and performance">
                     </div>
                     <div class="blog-content">
-                        <time class="blog-date" datetime="2025-12-02">December 2, 2025</time>
-                        <h3 class="product-title">Optimizing LLMs with Google AI Studio</h3>
+                        <h3 class="product-title">Optimizing LLMs: Cost-Saving Strategies</h3>
+                        <p class="blog-byline">Smartomation Team – December 2, 2025</p>
+                        <time class="blog-date" datetime="2025-12-02" hidden>December 2, 2025</time>
                         <p class="blog-excerpt product-description">
-                            Cost-saving strategies for using Google AI Studio. Discover how to fine-tune models, reduce API costs, and build efficient AI workflows that deliver results without breaking the bank.
+                            Cost-saving strategies for LLM-powered automation. Discover how to fine-tune model usage, reduce API costs, and build efficient AI workflows that deliver results without breaking the bank.
                         </p>
                         <div class="blog-full-content" hidden>
-                            <p>Cost-saving strategies for using Google AI Studio. Discover how to fine-tune models, reduce API costs, and build efficient AI workflows that deliver results without breaking the bank.</p>
-                            <p>We walk through prompt design, model selection, and caching strategies. Learn when to use Gemini vs smaller models and how to structure requests to minimize tokens while keeping quality high.</p>
+                            <p>Cost-saving strategies for LLM-powered automation. Discover how to fine-tune model usage, reduce API costs, and build efficient AI workflows that deliver results without breaking the bank.</p>
+                            <p>We walk through prompt design, model selection, and caching strategies. Learn when to use larger vs smaller models and how to structure requests to minimize tokens while keeping quality high.</p>
                             <p>Practical examples show 20–40% cost reduction on real automation workloads.</p>
                         </div>
                         <button type="button" class="btn btn-secondary blog-read-more">Read more</button>
@@ -300,13 +313,14 @@
                         <img src="images/building-seamless-app-integrations-image.avif" alt="Building Seamless App Integrations">
                     </div>
                     <div class="blog-content">
-                        <time class="blog-date" datetime="2025-11-25">November 25, 2025</time>
                         <h3 class="product-title">Building Seamless App Integrations</h3>
+                        <p class="blog-byline">Smartomation Team – November 25, 2025</p>
+                        <time class="blog-date" datetime="2025-11-25" hidden>November 25, 2025</time>
                         <p class="blog-excerpt product-description">
-                            Connect Gmail, Google Sheets, Docs, Slack, and 500+ apps with n8n. Best practices for building robust integrations that scale and adapt to your changing business needs.
+                            Connect Gmail, Google Sheets, Docs, Slack, and 500+ apps. Best practices for building robust integrations that scale and adapt to your changing business needs.
                         </p>
                         <div class="blog-full-content" hidden>
-                            <p>Connect Gmail, Google Sheets, Docs, Slack, and 500+ apps with n8n. Best practices for building robust integrations that scale and adapt to your changing business needs.</p>
+                            <p>Connect Gmail, Google Sheets, Docs, Slack, and 500+ apps. Best practices for building robust integrations that scale and adapt to your changing business needs.</p>
                             <p>We cover OAuth, webhooks, and idempotency so your integrations stay reliable. Real-world examples include lead routing, document processing, and team notifications—all with error handling and retries.</p>
                             <p>One workflow, many apps: here's how to design integrations that don't become technical debt.</p>
                         </div>
@@ -314,21 +328,22 @@
                     </div>
                 </article>
 
-                <!-- Mastering n8n Workflows - Nov 18, 2025 -->
+                <!-- Mastering Complex Workflows - Nov 18, 2025 -->
                 <article class="blog-card fade-in" data-blog-id="o1">
                     <div class="blog-image">
-                        <img src="images/mastering-n8n-workflows-image.png" alt="Mastering n8n Workflows">
+                        <img src="images/mastering-n8n-workflows-image.png" alt="Mastering complex AI workflows">
                     </div>
                     <div class="blog-content">
-                        <time class="blog-date" datetime="2025-11-18">November 18, 2025</time>
-                        <h3 class="product-title">Mastering n8n Workflows: Tips for Complex Automations</h3>
+                        <h3 class="product-title">Mastering Complex Workflows: Tips for Multi-Step Automations</h3>
+                        <p class="blog-byline">Smartomation Team – November 18, 2025</p>
+                        <time class="blog-date" datetime="2025-11-18" hidden>November 18, 2025</time>
                         <p class="blog-excerpt product-description">
-                            Dive into building multi-step AI flows with n8n. Learn how to create intricate workflows that connect multiple apps and services, handle errors gracefully, and scale with your business needs.
+                            Dive into building multi-step AI flows. Learn how to create intricate workflows that connect multiple apps and services, handle errors gracefully, and scale with your business needs.
                         </p>
                         <div class="blog-full-content" hidden>
-                            <p>Dive into building multi-step AI flows with n8n. Learn how to create intricate workflows that connect multiple apps and services, handle errors gracefully, and scale with your business needs.</p>
+                            <p>Dive into building multi-step AI flows. Learn how to create intricate workflows that connect multiple apps and services, handle errors gracefully, and scale with your business needs.</p>
                             <p>We cover best practices for structuring nodes, using sub-workflows, and implementing retries and error branches. You'll see how to keep complex automations maintainable and debuggable as they grow.</p>
-                            <p>Whether you're syncing data across tools or building full AI pipelines, these patterns will help you ship reliable n8n workflows.</p>
+                            <p>Whether you're syncing data across tools or building full AI pipelines, these patterns will help you ship reliable, enterprise-grade workflows.</p>
                         </div>
                         <button type="button" class="btn btn-secondary blog-read-more">Read more</button>
                     </div>
@@ -337,30 +352,13 @@
         </div>
     </section>
 
-    <!-- Blog full-content modal -->
-    <div id="blogModal" class="blog-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="blogModalTitle">
-        <div class="blog-modal-backdrop"></div>
-        <div class="blog-modal-box">
-            <button type="button" class="blog-modal-close" aria-label="Close modal">&times;</button>
-            <div class="blog-modal-image-wrap">
-                <img class="blog-modal-image" src="" alt="">
-            </div>
-            <time class="blog-modal-date"></time>
-            <h2 id="blogModalTitle" class="blog-modal-title"></h2>
-            <div class="blog-modal-body"></div>
-        </div>
-    </div>
-
     <!-- CTA Section -->
-    <section class="section" style="background: var(--bg-light);">
+    <section class="section blog-article__cta" style="background: var(--bg-light);">
         <div class="container">
             <div class="trust-statement fade-in">
-                <p>
-                    Get AI automation tips and insights in your inbox.<br>
-                    <a href="contact.html" class="btn btn-primary" style="margin-top: var(--spacing-md); display: inline-block;">
-                        Stay in Touch
-                    </a>
-                </p>
+                <p style="margin-bottom: var(--spacing-md);">Ready to automate intelligently?</p>
+                <a href="contact.html" class="btn btn-primary" style="margin-right: var(--spacing-sm);">Talk to Sales</a>
+                <a href="contact.html" class="btn btn-secondary">Get Started</a>
             </div>
         </div>
     </section>
@@ -377,7 +375,7 @@
                             </a>
                         </div>
                         <p class="footer-description">
-                            Cost-effective AI automation for every business. Build intelligent workflows that think, act, and deliver results.
+                            AI agency and automation consultancy. Intelligent digital workflows, multi-agent AI systems, and scalable outcomes.
                         </p>
                         <div class="footer-social">
                             <a href="#" aria-label="Twitter" class="social-icon">
@@ -398,7 +396,7 @@
                                 <li><a href="about.html">About Us</a></li>
                                 <li><a href="contact.html">Contact</a></li>
                                 <li><a href="blog.html">Blog</a></li>
-                                <li><a href="clients.html">Experience</a></li>
+                                <li><a href="clients.html">Client</a></li>
                             </ul>
                         </div>
                         <div class="footer-column">
@@ -431,6 +429,22 @@
         <a href="contact.html" class="btn btn-primary">Get Started</a>
     </div>
 
+    <script src="js/blog-data.js"></script>
+    <script>
+      (function() {
+        var grid = document.getElementById('blog-listing-cards');
+        if (typeof BLOG_POSTS === 'undefined' || !grid) return;
+        grid.innerHTML = '';
+        BLOG_POSTS.forEach(function(post) {
+          var a = document.createElement('a');
+          a.href = 'blog/' + post.slug + '.html';
+          a.className = 'blog-listing-card';
+          a.setAttribute('aria-label', 'Read: ' + post.title);
+          a.innerHTML = '<div class="blog-listing-card__image"><img src="' + (post.image || '') + '" alt="' + (post.imageAlt || post.title) + '"></div><div class="blog-listing-card__body"><div class="blog-listing-card__meta"><time datetime="' + post.date + '">' + post.dateFormatted + '</time><span class="blog-listing-card__read-time">' + post.readTime + ' min read</span></div><h3 class="blog-listing-card__title">' + post.title + '</h3><p class="blog-listing-card__summary">' + post.summary + '</p></div>';
+          grid.appendChild(a);
+        });
+      })();
+    </script>
     <script src="js/main.js"></script>
 </body>
 </html>
