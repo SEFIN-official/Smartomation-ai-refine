@@ -206,19 +206,55 @@ function displayResult(outputElement, data, isSuccess) {
     outputElement.classList.add(isSuccess ? 'success' : 'error');
 
     if (!isSuccess) {
-        const detailsHtml = data.details
-            ? `<div style="margin-top:8px;font-size:0.95rem;">${escapeHtml(data.details)}</div>`
-            : '';
-        const endpointHtml = data.endpoint
-            ? `<div style="margin-top:8px;font-size:0.85rem;opacity:0.9;">Endpoint: ${escapeHtml(data.endpoint)}</div>`
-            : '';
-
-        outputElement.innerHTML = `<strong>Error:</strong> ${escapeHtml(data.error || 'Unknown error')}${detailsHtml}${endpointHtml}`;
+        const message = data && data.error
+            ? data.error
+            : 'Automation failed. Please try again.';
+        outputElement.innerHTML = `<strong>${escapeHtml(message)}</strong>`;
         return;
     }
 
-    const result = data.result ? JSON.stringify(data.result, null, 2) : JSON.stringify(data, null, 2);
-    outputElement.innerHTML = '<strong>Automation completed</strong><pre style="margin-top:10px;white-space:pre-wrap;">' + escapeHtml(result) + '</pre>';
+    const emailAddress = getEmailAddress(data);
+    const emailStatus = getEmailStatus(data);
+
+    if (emailStatus === 'sent') {
+        outputElement.innerHTML = `<strong>Email sent to ${escapeHtml(emailAddress || 'the provided email')}.</strong><div style="margin-top:6px;">Please check your inbox and spam folder.</div>`;
+        return;
+    }
+
+    if (emailStatus === 'failed') {
+        outputElement.innerHTML = `<strong>Automation completed, but email could not be sent to ${escapeHtml(emailAddress || 'the provided email')}.</strong><div style="margin-top:6px;">Please verify SMTP credentials and try again.</div>`;
+        return;
+    }
+
+    outputElement.innerHTML = `<strong>Automation completed for ${escapeHtml(emailAddress || 'the provided email')}.</strong><div style="margin-top:6px;">Please check your inbox.</div>`;
+}
+
+function getEmailAddress(payload) {
+    if (!payload || typeof payload !== 'object') {
+        return '';
+    }
+
+    if (payload.result && typeof payload.result.email === 'string') {
+        return payload.result.email;
+    }
+
+    if (typeof payload.email === 'string') {
+        return payload.email;
+    }
+
+    return '';
+}
+
+function getEmailStatus(payload) {
+    if (!payload || typeof payload !== 'object') {
+        return '';
+    }
+
+    if (payload.email && typeof payload.email.status === 'string') {
+        return payload.email.status.toLowerCase();
+    }
+
+    return '';
 }
 
 function showError(message) {

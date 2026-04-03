@@ -1,18 +1,23 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
-from typing import Optional
+from __future__ import annotations
 
-class Settings(BaseSettings):
-    # LLM Configuration
-    LLM_PROVIDER: str = "groq"  # "groq" or "openai"
-    GROQ_API_KEY: Optional[str] = None
-    OPENAI_API_KEY: Optional[str] = None
-    
-    # SMTP Configuration
-    SMTP_HOST: str = "smtp.gmail.com"
-    SMTP_PORT: int = 587
-    SMTP_USER: str = ""
-    SMTP_PASS: str = ""
+import os
+from dataclasses import dataclass
 
-    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+
+@dataclass(frozen=True)
+class Settings:
+    LLM_PROVIDER: str = os.getenv("LLM_PROVIDER", "groq")
+    GROQ_API_KEY: str | None = os.getenv("GROQ_API_KEY") or None
+    OPENAI_API_KEY: str | None = os.getenv("OPENAI_API_KEY") or None
+    SMTP_HOST: str = os.getenv("SMTP_HOST", "smtp.gmail.com")
+    SMTP_PORT: int = int(os.getenv("SMTP_PORT", "587"))
+    SMTP_USER: str = os.getenv("SMTP_USER", "")
+    SMTP_PASS: str = os.getenv("SMTP_PASS", "")
+
 
 settings = Settings()
