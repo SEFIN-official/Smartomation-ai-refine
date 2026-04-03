@@ -125,6 +125,7 @@ def _run_command(prefix: str, payload: dict[str, Any]) -> Any:
             text=True,
             timeout=timeout,
             env=child_env,
+            cwd=str(Path(__file__).resolve().parent.parent),
             check=False,
         )
     except subprocess.TimeoutExpired as exc:
@@ -168,19 +169,25 @@ def _send_output_email(prefix: str, payload: dict[str, Any], demo_id: str, resul
         return {'status': 'skipped', 'reason': f'Email not configured for {prefix}.'}
 
     subject = os.getenv(f'{prefix}EMAIL_SUBJECT', f'Smartomation {demo_id} output')
-    pretty_result = json.dumps(result, indent=2, ensure_ascii=True)
-    body = (
-        f'Hi,\n\n'
-        f'Your {demo_id} automation has completed.\n\n'
-        f'Result:\n{pretty_result}\n\n'
-        f'Thanks,\nSmartomation.ai'
-    )
+    if isinstance(result, dict):
+        subject = str(result.get('email_subject') or subject)
+        body = str(result.get('email_body') or result.get('final_report') or result.get('summary_html') or '')
+        email_format = str(result.get('email_format') or 'plain').lower()
+    else:
+        body = ''
+        email_format = 'plain'
+
+    if not body:
+        body = json.dumps(result, indent=2, ensure_ascii=True)
+        email_format = 'plain'
+
+    mime_subtype = 'html' if email_format == 'html' else 'plain'
 
     message = EmailMessage()
     message['Subject'] = subject
     message['From'] = smtp_from
     message['To'] = recipient
-    message.set_content(body)
+    message.set_content(body, subtype=mime_subtype)
 
     try:
         with smtplib.SMTP(smtp_host, smtp_port, timeout=30) as smtp:

@@ -7,11 +7,10 @@ const DEMO_TEST_CONFIG = {
     demo1: {
         endpoint: '/api/demo-test/demo1/run',
         emailField: 'email',
-        inputField: 'source_url'
+        inputField: 'youtube_url'
     },
     demo2: {
         endpoint: '/api/demo-test/demo2/run',
-        nameField: 'name',
         emailField: 'email',
         fileField: 'document',
         hasFileUpload: true
@@ -19,12 +18,11 @@ const DEMO_TEST_CONFIG = {
     demo3: {
         endpoint: '/api/demo-test/demo3/run',
         emailField: 'email',
-        serviceTypeField: 'service_type',
-        cityField: 'city'
+        topicField: 'topic'
     },
     demo4: {
         endpoint: '/api/demo-test/demo4/run',
-        topicField: 'topic',
+        queryField: 'query',
         emailField: 'email'
     }
 };
@@ -123,44 +121,45 @@ function runDemo(demoId, form) {
 
 function buildRequestState(config, form) {
     if (config.hasFileUpload) {
-        const nameInput = form.querySelector('.demo-input-name');
         const emailInput = form.querySelector('.demo-input-email');
         const fileInput = form.querySelector('.demo-input-file');
 
-        if (!nameInput || !emailInput || !fileInput || !fileInput.files[0]) {
-            return { ok: false, error: 'Please fill name, email, and select a file.' };
+        if (!emailInput || !fileInput || !fileInput.files[0]) {
+            return { ok: false, error: 'Please fill email and select a PDF file.' };
+        }
+
+        const selectedFile = fileInput.files[0];
+        if (!selectedFile.name.toLowerCase().endsWith('.pdf')) {
+            return { ok: false, error: 'Only PDF files are supported.' };
         }
 
         const body = new FormData();
-        body.append(config.nameField, nameInput.value.trim());
         body.append(config.emailField, emailInput.value.trim());
         body.append(config.fileField, fileInput.files[0]);
 
         return {
             ok: true,
-            inputs: [nameInput, emailInput, fileInput],
+            inputs: [emailInput, fileInput],
             fetchOptions: { method: 'POST', body }
         };
     }
 
     const emailInput = form.querySelector('.demo-input-email');
     const urlInput = form.querySelector('.demo-input-url');
-    const serviceTypeInput = form.querySelector('.demo-input-service-type');
-    const cityInput = form.querySelector('.demo-input-city');
     const topicInput = form.querySelector('.demo-input-topic');
+    const queryInput = form.querySelector('.demo-input-query');
 
     const payload = {};
     const inputs = [];
 
-    if (config.serviceTypeField && config.cityField) {
-        if (!emailInput || !serviceTypeInput || !cityInput) {
-            return { ok: false, error: 'Expected email, service type, and city.' };
+    if (config.queryField && queryInput) {
+        if (!emailInput || !queryInput) {
+            return { ok: false, error: 'Expected query and email.' };
         }
 
+        payload[config.queryField] = queryInput.value.trim();
         payload[config.emailField] = emailInput.value.trim();
-        payload[config.serviceTypeField] = serviceTypeInput.value.trim();
-        payload[config.cityField] = cityInput.value.trim();
-        inputs.push(emailInput, serviceTypeInput, cityInput);
+        inputs.push(queryInput, emailInput);
     } else if (config.topicField) {
         if (!emailInput || !topicInput) {
             return { ok: false, error: 'Expected topic and email.' };

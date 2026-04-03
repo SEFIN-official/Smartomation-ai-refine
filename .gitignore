@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+demo_files/**/.env
+demo_files/**/venv/
+demo_files/**/Multimodalenv/
+demo_files/**/__pycache__/
+backend/.env
