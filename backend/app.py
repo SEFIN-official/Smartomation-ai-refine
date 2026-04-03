@@ -6,7 +6,6 @@ import shlex
 import subprocess
 import tempfile
 from email.message import EmailMessage
-from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -244,7 +243,6 @@ def _first_non_empty(*values: Any) -> str:
     return ''
 
 
-@lru_cache(maxsize=8)
 def _get_demo_env_values(prefix: str) -> dict[str, str]:
     env_path = _resolve_demo_env_path(prefix)
     if not env_path or not env_path.exists():
