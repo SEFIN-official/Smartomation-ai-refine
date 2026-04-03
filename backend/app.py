@@ -183,8 +183,6 @@ def _send_output_email(prefix: str, payload: dict[str, Any], demo_id: str, resul
         demo_env.get('EMAIL_PASS'),
         os.getenv(f'{prefix}SMTP_PASSWORD', ''),
     )
-    # Gmail app passwords are often copied with spaces; normalize before login.
-    smtp_password = smtp_password.replace(' ', '')
     smtp_from = _first_non_empty(
         demo_env.get('SMTP_FROM'),
         demo_env.get('EMAIL_FROM'),
