@@ -6,5 +6,6 @@ __pycache__/
 demo_files/**/.env
 demo_files/**/venv/
 demo_files/**/Multimodalenv/
+demo_files/youtube-report-generator/
 demo_files/**/__pycache__/
 backend/.env
