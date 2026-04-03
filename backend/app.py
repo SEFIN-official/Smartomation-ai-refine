@@ -17,6 +17,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.datastructures import UploadFile
 
 load_dotenv(Path(__file__).with_name('.env'))
+BACKEND_ENV = {
+    str(key): str(value)
+    for key, value in dotenv_values(Path(__file__).with_name('.env')).items()
+    if key is not None and value is not None
+}
 
 app = FastAPI(title='Smartomation Demo Test API', version='1.0.0')
 app.add_middleware(
@@ -101,7 +106,10 @@ async def _extract_payload(request: Request) -> tuple[dict[str, Any], list[str]]
 
 
 def _run_command(prefix: str, payload: dict[str, Any]) -> Any:
-    command = os.getenv(f'{prefix}COMMAND', '').strip()
+    command = _first_non_empty(
+        os.getenv(f'{prefix}COMMAND', ''),
+        BACKEND_ENV.get(f'{prefix}COMMAND', ''),
+    )
     if not command:
         raise HTTPException(
             status_code=500,
@@ -111,7 +119,11 @@ def _run_command(prefix: str, payload: dict[str, Any]) -> Any:
             ),
         )
 
-    timeout = int(os.getenv(f'{prefix}TIMEOUT_SECONDS', '180'))
+    timeout = int(_first_non_empty(
+        os.getenv(f'{prefix}TIMEOUT_SECONDS', ''),
+        BACKEND_ENV.get(f'{prefix}TIMEOUT_SECONDS', ''),
+        '180',
+    ))
     command_parts = shlex.split(command)
 
     child_env = os.environ.copy()
