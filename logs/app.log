@@ -42,3 +42,25 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 2026-04-03 14:15:18 | INFO     | services.llm:call_groq:109 — [Groq] Sending request | model=llama-3.3-70b-versatile
 2026-04-03 14:15:20 | INFO     | services.llm:call_groq:115 — [Groq] Response received (1390 chars)
 2026-04-03 14:15:20 | INFO     | services.summarizer:summarize_combined:107 — [Summarizer] Groq raw response (1390 chars)
+2026-04-03 15:24:04 | INFO     | utils.logger:setup_logger:34 — Logger initialized.
+2026-04-03 15:24:04 | INFO     | services.llm:call_openrouter:80 — [OpenRouter] Sending request | model=qwen/qwen3-coder:free
+2026-04-03 15:24:04 | INFO     | services.llm:call_groq:109 — [Groq] Sending request | model=llama-3.3-70b-versatile
+2026-04-03 15:24:04 | INFO     | services.llm:_sync_call:128 — [Gemini] Sending request | model=gemini-1.5-flash
+2026-04-03 15:24:05 | ERROR    | services.llm:_timed:150 — [gemini] Failed after 0.24s: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2026-04-03 15:24:07 | INFO     | services.llm:call_groq:115 — [Groq] Response received (2535 chars)
+2026-04-03 15:24:07 | INFO     | services.llm:_timed:153 — [groq_llama] Completed in 2.73s
+2026-04-03 15:24:08 | INFO     | services.llm:call_openrouter:80 — [OpenRouter] Sending request | model=qwen/qwen3-coder:free
+2026-04-03 15:24:13 | INFO     | services.llm:call_openrouter:80 — [OpenRouter] Sending request | model=qwen/qwen3-coder:free
+2026-04-03 15:24:22 | INFO     | services.llm:call_openrouter:80 — [OpenRouter] Sending request | model=qwen/qwen3-coder:free
+2026-04-03 15:24:22 | ERROR    | services.llm:_timed:150 — [openrouter_qwen] Failed after 18.27s: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-04-03 15:24:22 | INFO     | services.summarizer:summarize_combined:91 — [Summarizer] Trying OpenRouter as primary summarizer
+2026-04-03 15:24:23 | INFO     | services.llm:call_openrouter:80 — [OpenRouter] Sending request | model=qwen/qwen3-coder:free
+2026-04-03 15:24:26 | INFO     | services.llm:call_openrouter:80 — [OpenRouter] Sending request | model=qwen/qwen3-coder:free
+2026-04-03 15:24:31 | INFO     | services.llm:call_openrouter:80 — [OpenRouter] Sending request | model=qwen/qwen3-coder:free
+2026-04-03 15:24:40 | INFO     | services.llm:call_openrouter:80 — [OpenRouter] Sending request | model=qwen/qwen3-coder:free
+2026-04-03 15:24:40 | WARNING  | services.summarizer:summarize_combined:96 — [Summarizer] OpenRouter 429 — switching to Groq fallback
+2026-04-03 15:24:40 | INFO     | services.summarizer:summarize_combined:105 — [Summarizer] Using Groq (LLaMA 3.3 70B) as fallback
+2026-04-03 15:24:40 | INFO     | services.llm:call_groq:109 — [Groq] Sending request | model=llama-3.3-70b-versatile
+2026-04-03 15:24:42 | INFO     | services.llm:call_groq:115 — [Groq] Response received (1696 chars)
+2026-04-03 15:24:42 | INFO     | services.summarizer:summarize_combined:107 — [Summarizer] Groq raw response (1696 chars)
