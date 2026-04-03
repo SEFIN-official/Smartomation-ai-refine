@@ -1,0 +1,22 @@
+2026-04-03 14:04:18 | INFO     | utils.logger:setup_logger:34 — Logger initialized.
+2026-04-03 14:04:18 | INFO     | services.llm:call_openrouter:80 — [OpenRouter] Sending request | model=qwen/qwen3-coder:free
+2026-04-03 14:04:18 | INFO     | services.llm:call_groq:109 — [Groq] Sending request | model=llama-3.3-70b-versatile
+2026-04-03 14:04:18 | INFO     | services.llm:_sync_call:128 — [Gemini] Sending request | model=gemini-1.5-flash
+2026-04-03 14:04:19 | ERROR    | services.llm:_timed:150 — [gemini] Failed after 0.36s: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2026-04-03 14:04:20 | INFO     | services.llm:call_groq:115 — [Groq] Response received (3093 chars)
+2026-04-03 14:04:20 | INFO     | services.llm:_timed:153 — [groq_llama] Completed in 1.93s
+2026-04-03 14:04:22 | INFO     | services.llm:call_openrouter:80 — [OpenRouter] Sending request | model=qwen/qwen3-coder:free
+2026-04-03 14:04:27 | INFO     | services.llm:call_openrouter:80 — [OpenRouter] Sending request | model=qwen/qwen3-coder:free
+2026-04-03 14:04:36 | INFO     | services.llm:call_openrouter:80 — [OpenRouter] Sending request | model=qwen/qwen3-coder:free
+2026-04-03 14:04:36 | ERROR    | services.llm:_timed:150 — [openrouter_qwen] Failed after 18.05s: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-04-03 14:04:36 | INFO     | services.summarizer:summarize_combined:91 — [Summarizer] Trying OpenRouter as primary summarizer
+2026-04-03 14:04:36 | INFO     | services.llm:call_openrouter:80 — [OpenRouter] Sending request | model=qwen/qwen3-coder:free
+2026-04-03 14:04:40 | INFO     | services.llm:call_openrouter:80 — [OpenRouter] Sending request | model=qwen/qwen3-coder:free
+2026-04-03 14:04:45 | INFO     | services.llm:call_openrouter:80 — [OpenRouter] Sending request | model=qwen/qwen3-coder:free
+2026-04-03 14:04:54 | INFO     | services.llm:call_openrouter:80 — [OpenRouter] Sending request | model=qwen/qwen3-coder:free
+2026-04-03 14:04:55 | WARNING  | services.summarizer:summarize_combined:96 — [Summarizer] OpenRouter 429 — switching to Groq fallback
+2026-04-03 14:04:55 | INFO     | services.summarizer:summarize_combined:105 — [Summarizer] Using Groq (LLaMA 3.3 70B) as fallback
+2026-04-03 14:04:55 | INFO     | services.llm:call_groq:109 — [Groq] Sending request | model=llama-3.3-70b-versatile
+2026-04-03 14:04:56 | INFO     | services.llm:call_groq:115 — [Groq] Response received (1163 chars)
+2026-04-03 14:04:56 | INFO     | services.summarizer:summarize_combined:107 — [Summarizer] Groq raw response (1163 chars)
