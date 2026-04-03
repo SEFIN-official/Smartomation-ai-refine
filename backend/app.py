@@ -6,11 +6,12 @@ import shlex
 import subprocess
 import tempfile
 from email.message import EmailMessage
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
 import smtplib
-from dotenv import load_dotenv
+from dotenv import dotenv_values, load_dotenv
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.datastructures import UploadFile
@@ -32,6 +33,8 @@ DEMO_PREFIXES = {
     'demo3': 'DEMO3_',
     'demo4': 'DEMO4_',
 }
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 @app.get('/api/health')
@@ -125,7 +128,7 @@ def _run_command(prefix: str, payload: dict[str, Any]) -> Any:
             text=True,
             timeout=timeout,
             env=child_env,
-            cwd=str(Path(__file__).resolve().parent.parent),
+            cwd=str(REPO_ROOT),
             check=False,
         )
     except subprocess.TimeoutExpired as exc:
@@ -158,12 +161,40 @@ def _send_output_email(prefix: str, payload: dict[str, Any], demo_id: str, resul
     if not recipient:
         return {'status': 'skipped', 'reason': 'No email field in request payload.'}
 
-    smtp_host = os.getenv(f'{prefix}SMTP_HOST', '').strip()
-    smtp_port = int(os.getenv(f'{prefix}SMTP_PORT', '587'))
-    smtp_user = os.getenv(f'{prefix}SMTP_USERNAME', '').strip()
-    smtp_password = os.getenv(f'{prefix}SMTP_PASSWORD', '').strip()
-    smtp_from = os.getenv(f'{prefix}SMTP_FROM', smtp_user).strip()
-    use_tls = os.getenv(f'{prefix}SMTP_USE_TLS', 'true').strip().lower() == 'true'
+    demo_env = _get_demo_env_values(prefix)
+
+    smtp_host = _first_non_empty(
+        demo_env.get('SMTP_HOST'),
+        os.getenv(f'{prefix}SMTP_HOST', ''),
+        'smtp.gmail.com',
+    )
+    smtp_port = int(_first_non_empty(
+        demo_env.get('SMTP_PORT'),
+        os.getenv(f'{prefix}SMTP_PORT', ''),
+        '587',
+    ))
+    smtp_user = _first_non_empty(
+        demo_env.get('SMTP_USER'),
+        demo_env.get('EMAIL_USER'),
+        os.getenv(f'{prefix}SMTP_USERNAME', ''),
+    )
+    smtp_password = _first_non_empty(
+        demo_env.get('SMTP_PASS'),
+        demo_env.get('EMAIL_PASS'),
+        os.getenv(f'{prefix}SMTP_PASSWORD', ''),
+    )
+    smtp_from = _first_non_empty(
+        demo_env.get('SMTP_FROM'),
+        demo_env.get('EMAIL_FROM'),
+        os.getenv(f'{prefix}SMTP_FROM', ''),
+        smtp_user,
+    )
+    use_tls_value = _first_non_empty(
+        demo_env.get('SMTP_USE_TLS'),
+        os.getenv(f'{prefix}SMTP_USE_TLS', ''),
+        'true',
+    )
+    use_tls = str(use_tls_value).strip().lower() == 'true'
 
     if not smtp_host or not smtp_user or not smtp_password or not smtp_from:
         return {'status': 'skipped', 'reason': f'Email not configured for {prefix}.'}
@@ -199,3 +230,55 @@ def _send_output_email(prefix: str, payload: dict[str, Any], demo_id: str, resul
         return {'status': 'failed', 'reason': str(exc)}
 
     return {'status': 'sent', 'to': recipient}
+
+
+def _first_non_empty(*values: Any) -> str:
+    for value in values:
+        if value is None:
+            continue
+        text = str(value).strip()
+        if text:
+            return text
+    return ''
+
+
+@lru_cache(maxsize=8)
+def _get_demo_env_values(prefix: str) -> dict[str, str]:
+    env_path = _resolve_demo_env_path(prefix)
+    if not env_path or not env_path.exists():
+        return {}
+
+    values = dotenv_values(env_path)
+    return {
+        str(key): str(value)
+        for key, value in values.items()
+        if key is not None and value is not None
+    }
+
+
+def _resolve_demo_env_path(prefix: str) -> Path | None:
+    explicit = os.getenv(f'{prefix}ENV_FILE', '').strip()
+    if explicit:
+        explicit_path = Path(explicit)
+        if not explicit_path.is_absolute():
+            explicit_path = REPO_ROOT / explicit_path
+        return explicit_path
+
+    command = os.getenv(f'{prefix}COMMAND', '').strip()
+    if not command:
+        return None
+
+    parts = shlex.split(command)
+    runner_path: Path | None = None
+    for part in reversed(parts):
+        if part.lower().endswith('.py'):
+            candidate = Path(part)
+            if not candidate.is_absolute():
+                candidate = REPO_ROOT / candidate
+            runner_path = candidate
+            break
+
+    if runner_path is None:
+        return None
+
+    return runner_path.parent / '.env'
